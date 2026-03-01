@@ -147,7 +147,18 @@ server.registerTool(
     title: "Resolve Context7 Library ID",
     description: `Resolves a package/product name to a Context7-compatible library ID and returns matching libraries.
 
-You MUST call this function before 'query-docs' to obtain a valid Context7-compatible library ID UNLESS the user explicitly provides a library ID in the format '/org/project' or '/org/project/version' in their query.
+You MUST call this function before 'Query Documentation' tool to obtain a valid Context7-compatible library ID UNLESS the user explicitly provides a library ID in the format '/org/project' or '/org/project/version' in their query.
+
+Each result includes:
+- Library ID: Context7-compatible identifier (format: /org/project)
+- Name: Library or package name
+- Description: Short summary
+- Code Snippets: Number of available code examples
+- Source Reputation: Authority indicator (High, Medium, Low, or Unknown)
+- Benchmark Score: Quality indicator (100 is the highest score)
+- Versions: List of versions if available. Use one of those versions if the user provides a version in their query. The format of the version is /org/project/version.
+
+For best results, select libraries based on name match, source reputation, snippet coverage, benchmark score, and relevance to your use case.
 
 Selection Process:
 1. Analyze the query to understand what library/package the user is looking for
@@ -201,19 +212,6 @@ IMPORTANT: Do not call this tool more than 3 times per question. If you cannot f
 
     const responseText = `Available Libraries:
 
-Each result includes:
-- Library ID: Context7-compatible identifier (format: /org/project)
-- Name: Library or package name
-- Description: Short summary
-- Code Snippets: Number of available code examples
-- Source Reputation: Authority indicator (High, Medium, Low, or Unknown)
-- Benchmark Score: Quality indicator (100 is the highest score)
-- Versions: List of versions if available. Use one of those versions if the user provides a version in their query. The format of the version is /org/project/version.
-
-For best results, select libraries based on name match, source reputation, snippet coverage, benchmark score, and relevance to your use case.
-
-----------
-
 ${resultsText}`;
 
     return {
@@ -233,7 +231,7 @@ server.registerTool(
     title: "Query Documentation",
     description: `Retrieves and queries up-to-date documentation and code examples from Context7 for any programming library or framework.
 
-You must call 'resolve-library-id' first to obtain the exact Context7-compatible library ID required to use this tool, UNLESS the user explicitly provides a library ID in the format '/org/project' or '/org/project/version' in their query.
+You must call 'Resolve Context7 Library ID' tool first to obtain the exact Context7-compatible library ID required to use this tool, UNLESS the user explicitly provides a library ID in the format '/org/project' or '/org/project/version' in their query.
 
 IMPORTANT: Do not call this tool more than 3 times per question. If you cannot find what you need after 3 calls, use the best information you have.`,
     inputSchema: {

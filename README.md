@@ -90,14 +90,16 @@ Run this command. See [Claude Code MCP docs](https://code.claude.com/docs/en/mcp
 #### Claude Code Local Server Connection
 
 ```sh
-claude mcp add context7 -- npx -y @upstash/context7-mcp --api-key YOUR_API_KEY
+claude mcp add --scope user context7 -- npx -y @upstash/context7-mcp --api-key YOUR_API_KEY
 ```
 
 #### Claude Code Remote Server Connection
 
 ```sh
-claude mcp add --header "CONTEXT7_API_KEY: YOUR_API_KEY" --transport http context7 https://mcp.context7.com/mcp
+claude mcp add --scope user --header "CONTEXT7_API_KEY: YOUR_API_KEY" --transport http context7 https://mcp.context7.com/mcp
 ```
+
+> Remove `--scope user` to install for the current project only.
 
 </details>
 
@@ -138,15 +140,15 @@ Add this to your Opencode configuration file. See [Opencode MCP docs](https://op
 </details>
 
 <details>
-<summary><b>Install with add-mcp</b></summary>
+<summary><b>Install with ctx7 setup</b></summary>
 
-Install the MCP server for all your coding agents:
+Set up Context7 MCP for your coding agents:
 
 ```bash
-npx add-mcp https://mcp.context7.com/mcp --header "CONTEXT7_API_KEY: YOUR_API_KEY"
+npx ctx7 setup
 ```
 
-Add `-y` to skip the confirmation prompt and install to all detected agents already in use in the project directory.
+Authenticates via OAuth, generates an API key, and configures the MCP server and rule for your agents. Use `--cursor`, `--claude`, or `--opencode` to target a specific agent.
 
 </details>
 

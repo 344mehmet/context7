@@ -27,7 +27,8 @@
           "adding-libraries",
           "api-guide",
           "skills",
-          "tips"
+          "tips",
+          "enterprise"
         ]
       },
       {
@@ -41,9 +42,10 @@
             ]
           },
           "howto/claiming-libraries",
+          "howto/chat-widget",
           "howto/verification",
           "howto/private-repositories",
-          "howto/team",
+          "howto/teamspace",
           "howto/usage"
         ]
       },

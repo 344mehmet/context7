@@ -1,5 +1,18 @@
 # @upstash/context7-mcp
 
+## 2.1.4
+
+### Patch Changes
+
+- 9de3f06: Display warning when public library access filter is being used to filter libraries.
+
+## 2.1.3
+
+### Patch Changes
+
+- 9523522: Reject GET requests on MCP endpoints with 405 to eliminate idle SSE connection timeouts
+- 59d0327: Include source field in search result response
+
 ## 2.1.2
 
 ### Patch Changes

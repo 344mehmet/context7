@@ -48,6 +48,10 @@ export function formatSearchResult(result: SearchResult): string {
     formattedResult.push(`- Versions: ${result.versions.join(", ")}`);
   }
 
+  if (result.source) {
+    formattedResult.push(`- Source: ${result.source}`);
+  }
+
   // Join all parts with newlines
   return formattedResult.join("\n");
 }
@@ -64,8 +68,18 @@ export function formatSearchResults(searchResponse: SearchResponse): string {
     return "No documentation libraries found matching your query.";
   }
 
+  const parts: string[] = [];
+
+  if (searchResponse.searchFilterApplied) {
+    parts.push(
+      "**Note:** Your results only include libraries matching your access settings. To search across all public libraries, update your settings at https://context7.com/dashboard?tab=libraries"
+    );
+  }
+
   const formattedResults = searchResponse.results.map(formatSearchResult);
-  return formattedResults.join("\n----------\n");
+  parts.push(formattedResults.join("\n----------\n"));
+
+  return parts.join("\n\n");
 }
 
 /**
